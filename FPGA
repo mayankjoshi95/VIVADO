@@ -17,7 +17,30 @@ signal res2:std_logic_vector(3 downto 0);
 
 
 begin
-res1<=temp1 sll 1;
-res2<=temp2 srl 2;
+res1<=temp1 sll 1;#rol for rotate left
+res2<=temp2 srl 2;#ror for rotate right
+
+end tbnew;
+
+
+
+#RELATIONAL OPERATOR =,/=,>,>=,<,<=
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+entity tb is
+--  Port ( );
+end tb;
+
+architecture tbnew of tb is
+signal temp1:std_logic_vector(3 downto 0):="1001";
+signal temp2:std_logic_vector(3 downto 0):="1001";
+
+
+
+begin
+assert(temp1/=temp2) report "Two numbers are equal" SEVERITY NOTE;
 
 end tbnew;
