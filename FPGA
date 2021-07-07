@@ -1,1 +1,23 @@
-# VIVADO
+# for VHDL 2008 shift operation
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+entity tb is
+--  Port ( );
+end tb;
+
+architecture tbnew of tb is
+signal temp1:std_logic_vector(3 downto 0):="1000";
+signal temp2:std_logic_vector(3 downto 0):="1100";
+signal res1:std_logic_vector(3 downto 0);
+signal res2:std_logic_vector(3 downto 0);
+
+
+
+begin
+res1<=temp1 sll 1;
+res2<=temp2 srl 2;
+
+end tbnew;
