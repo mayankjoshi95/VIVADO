@@ -509,4 +509,35 @@ end Behavioral;
 
 
  
+ #RECORD 
+ 
+ 
+ 
+ 
+ 
+ library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+ 
+entity top is
+
+end top;
+ 
+architecture Behavioral of top is
+type record1 is record
+a,b :std_logic;
+c,d: std_logic;
+end record;
+constant stimuli : record1 :=('1','0','1','1');
+signal a1,a2,a3:std_logic;
+begin
+a1<=stimuli.c;
+a2<=stimuli.d;
+a3<=stimuli.b;
+end Behavioral;
+
+
+
 
