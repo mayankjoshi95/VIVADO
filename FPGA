@@ -182,3 +182,54 @@ end top;
 
 
 
+#SYNCHRONOUS RESET
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity top is 
+  port (clk,rst:in std_logic;
+        din:in std_logic;
+        dout:out std_logic);
+end top;
+ architecture Behavioral of top is
+  begin
+  process(clk)
+  begin
+  if rising_edge(clk)then--falling_edge
+   if rst='1' then
+   dout<='0';
+   else
+    dout<=din;
+  end if;
+  end if;
+  end process;
+  end Behavioral;     
+
+
+
+#ASYNCHRONOUS RESET
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity top is 
+  port (clk,rst:in std_logic;
+        din:in std_logic;
+        dout:out std_logic);
+end top;
+ architecture Behavioral of top is
+  begin
+  process(clk,rst)
+  begin
+  IF rst='1' then
+   dout<='0';
+   
+   elsif rising_edge(clk)then--falling_edge
+   
+    dout<=din;
+  end if;
+  end process;
+  end Behavioral;     
+
+
