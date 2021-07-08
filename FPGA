@@ -44,3 +44,141 @@ begin
 assert(temp1/=temp2) report "Two numbers are equal" SEVERITY NOTE;
 
 end tbnew;
+
+
+#DIVIDE BY TWO
+library IEEE;
+
+use IEEE.STD_LOGIC_1164.ALL;
+
+use ieee.numeric_std.all;
+
+use ieee.std_logic_unsigned.all;
+
+entity tb is
+
+--  Port ( );
+
+end tb;
+
+architecture tbnew of tb is
+
+signal temp1:std_logic_vector(7 downto 0):="10000000";
+
+signal res1:std_logic_vector(7 downto 0);
+
+signal res2:std_logic_vector(7 downto 0);
+
+signal res3:std_logic_vector(7 downto 0);
+
+ 
+
+begin
+
+res1<=temp1 srl 1;
+
+res2<=temp1 srl 2;
+
+res3<=temp1 srl 3;
+
+end tbnew;
+
+
+
+
+#BEHAVOURAL MODELLING STYLE #IF ELSE#DEMUX
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity demux is
+    Port ( din : in STD_LOGIC;
+           a,b,c,d : out STD_LOGIC;
+           sel : in STD_LOGIC_vector(1 downto 0));
+end demux;
+ 
+architecture Behavioral of demux is
+-----component signal mem
+begin
+process(din,sel)
+----variable
+begin
+a <= '0';
+b <= '0';
+c <= '0';
+d <= '0';
+ 
+if(sel = "00") then
+a <= din;
+elsif (sel = "01") then
+b <= din;
+elsif (sel = "10") then
+c <= din;
+elsif (sel = "11") then
+d <= din;
+else
+null;
+end if;
+ 
+ 
+end process;
+ 
+end Behavioral;
+
+
+
+
+#MUX
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity demux is
+    Port ( y : out STD_LOGIC;
+           a,b,c : in STD_LOGIC;
+           sel : in STD_LOGIC_vector(1 downto 0));
+end demux;
+ 
+architecture Behavioral of demux is
+-----component signal mem
+begin
+process(a,b,c,sel)
+----variable
+begin
+ 
+case (sel) is
+when "00"=>
+y<=a;
+when "01"=>
+y<=b;
+when "10"=>
+y<=c;
+when "11"=>
+y<='0';
+end case;
+end process;
+ 
+end Behavioral;
+
+
+#D FLIP FLOP
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity top is 
+  port (clk:in std_logic;
+        din:in std_logic;
+        dout:out std_logic);
+end top;
+ architecture Behavioral of top is
+  begin
+  process(clk)
+  begin
+  if Rising_edge(clk)then--falling_edge
+  dout<=din;
+  end if;
+  end process;
+  end Behavioral;     
+
+
+
