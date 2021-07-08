@@ -541,3 +541,111 @@ end Behavioral;
 
 
 
+
+
+
+#for multibit vector
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+ 
+entity top is
+
+end top;
+ 
+architecture Behavioral of top is
+type record1 is record
+a,b :std_logic;
+c,d: std_logic_vector(3 downto 0);
+end record;
+constant stimuli : record1 :=('1','0',"1011","1110");
+signal a1,a2:std_logic;
+signal b1,b2:std_logic_vector(3 downto 0);
+begin
+a1<=stimuli.a;
+a2<=stimuli.b;
+b1<=stimuli.c;
+b2<=stimuli.d;
+end Behavioral;
+
+
+
+
+
+
+
+
+#USING IP  catelog  adder/subtractor
+
+
+
+
+
+
+
+
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+
+
+entity addtb is
+--  Port ( );
+end addtb;
+
+architecture Behavioral of addtb is
+component c_addsub_0 IS
+  PORT (
+    A : IN STD_LOGIC_VECTOR(14 DOWNTO 0);
+    B : IN STD_LOGIC_VECTOR(14 DOWNTO 0);
+    CLK : IN STD_LOGIC;
+    CE : IN STD_LOGIC;
+    C_OUT : OUT STD_LOGIC;
+    S : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
+  );
+END component;
+signal a,b :std_logic_vector(14 downto 0):=(others=>'0');
+signal clk,ce:std_logic:='0';
+signal c_out:std_logic;
+signal s:std_logic_vector(14 downto 0);
+begin
+A1:c_addsub_0 port map(a=>a,b=>b,clk=>clk,ce=>ce,c_out=>c_out,s=>s);
+process(clk)
+begin
+clk<=not clk after 10 ns;
+end process;
+process
+begin
+a<="10001010101010";
+b<="10001010101010";
+wait for 30 ns;
+a<="10001010101010";
+b<="10001010101010";
+wait for 30 ns;
+
+wait;
+end process;
+process
+begin
+ce<='1';
+wait for 190ns;
+ce<='0';
+wait for 50 ns;
+
+
+wait;
+end process;
+
+end Behavioral;
+
+
+
+
