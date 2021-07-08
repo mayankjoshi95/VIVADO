@@ -232,4 +232,281 @@ end top;
   end process;
   end Behavioral;     
 
+#for both up down counter
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+entity top is 
+  port (clk,rst:in std_logic;   
+        up:in std_logic;
+  
+        dout:out std_logic_vector(7 downto 0));
+end top;
+ architecture Behavioral of top is
+ signal temp:std_logic_vector(7 downto 0):=x"00";
+  begin
+  process(clk)
+  begin
+  
+  if rising_edge(clk) then
+  if rst='1' then
+  temp<=x"00";
+  else
+  if up='1'then
+  temp<=temp+1;
+  elsif up='0' then
+  temp<=temp-1; 
+  end if;
+  end if;
+  end if;
+  end process;
+  dout<=temp;
+  end Behavioral;     
+
+#PRIORITY ENCODER 8:3
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity prien is
+    Port ( d0 : in STD_LOGIC;
+           d1 : in STD_LOGIC;
+           d2 : in STD_LOGIC;
+           d3 : in STD_LOGIC;
+           d4 : in STD_LOGIC;
+           d5 : in STD_LOGIC;
+           d6 : in STD_LOGIC;
+           d7 : in STD_LOGIC;
+           Q0 : out STD_LOGIC;
+           Q1 : out STD_LOGIC;
+           Q2 : out STD_LOGIC);
+end prien;
+
+architecture Behavioral of prien is
+
+begin
+process(d0,d1,d2,d3,d4,d5,d6,d7)
+begin
+if d0='1' and d1='0'and d2='0'and d3='0'and d4='0'and d5='0'and d6='0'and d7='0'then
+ Q0<='0';
+ Q1<='0';
+ Q2<='0';
+elsIF d1='1' and (d0='0' or d0='1')and d2='0'and d3='0'and d4='0'and d5='0'and d6='0'and d7='0' then
+ Q0<='1';
+ Q1<='0';
+ Q2<='0';
+ elsIF d2='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and d3='0'and d4='0'and d5='0'and d6='0'and d7='0' then
+  Q0<='0';
+ Q1<='1';
+ Q2<='0';
+ elsIF d3='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and (d2='0' or d2='1') and d4='0'and d5='0'and d6='0'and d7='0'then
+  Q0<='1';
+ Q1<='1';
+ Q2<='0';
+ elsIF d4='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and (d2='0' or d2='1')and (d3='0' or d3='1') and d5='0'and d6='0'and d7='0'then 
+ Q0<='0';
+ Q1<='0';
+ Q2<='1';
+ elsIF d5='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and (d2='0' or d2='1')and (d3='0' or d3='1')and (d4='0' or d4='1') and d6='0'and d7='0'then
+  Q0<='1';
+ Q1<='0';
+ Q2<='1';
+ elsIF d6='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and (d2='0' or d2='1')and (d3='0' or d3='1')and (d4='0' or d4='1')and (d5='0' or d5='1')and d7='0' then
+  Q0<='0';
+ Q1<='1';
+ Q2<='1';
+ 
+elsIF d7='1' and (d0='0' or d0='1')and (d1='0' or d1='1')and (d2='0' or d2='1')and (d3='0' or d3='1')and (d4='0' or d4='1')and (d5='0' or d5='1')and (d6='0' or d6='1') then
+ Q0<='1';
+ Q1<='1';
+ Q2<='1';
+ end if ;
+ end process;
+end Behavioral;
+
+
+
+#TEST BENCH
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity top is
+port (
+a,b : in bit_vector(3 downto 0);
+y : out bit_vector(3 downto 0)
+ );
+end top;
+ 
+architecture Behavioral of top is
+ 
+begin
+ 
+y <= a or b;
+ 
+end Behavioral;
+
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity toptb is
+end toptb;
+architecture toptb2 of toptb is
+component top is
+port (
+a,b : in bit_vector(3 downto 0);
+y : out bit_vector(3 downto 0));
+end component;
+signal a,b:bit_vector(3 downto 0):="0000";
+signal y:bit_vector(3 downto 0);
+
+ begin
+ T1: top port map(a => a,b=> b,y=>y);
+ 
+end toptb2 ;
+
+
+
+#FORCE CONSTANT
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+entity top is
+port (
+a,b : in bit_vector(3 downto 0);
+y : out bit_vector(3 downto 0)
+ );
+end top;
+ 
+architecture Behavioral of top is
+ 
+begin
+ 
+y <= a or b;
+ 
+end Behavioral;
+
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity toptb is
+end toptb;
+architecture toptb2 of toptb is
+component top is
+port (
+a,b : in bit_vector(3 downto 0);
+y : out bit_vector(3 downto 0));
+end component;
+signal a,b:bit_vector(3 downto 0):="0000";
+signal y:bit_vector(3 downto 0);
+
+ begin
+ T1: top port map(a => a,b=> b,y=>y);
+ a<="0110" after 10 ns,"1010" after 20 ns,"0100" after 30 ns;
+ b<="1111" after 10 ns,"0110" after 20 ns,"1000" after 30 ns;
+end toptb2 ;
+
+
+
+
+
+
+#FORCE CONSTANT WITH USE OF PROCESS
+
+after same as before 
+-- a<="0110" after 10 ns,"1010" after 20 ns,"0100" after 30 ns;
+-- b<="1111" after 10 ns,"0110" after 20 ns,"1000" after 30 ns;
+process
+begin
+wait for 10 ns;
+a<="0110";
+b<="1010";
+wait for 10 ns;
+a<="1010";
+b<="0110";
+wait for 10 ns;
+a<="0100";
+b<="1000";
+wait for 10 ns;
+wait;
+end process;
+end toptb2 ;
+
+ 
+ #FORCE CLOCK 
+ 
+ 
+ process(a)
+begin 
+a(0)<=not a(0) after 10 ns;
+a(1)<=not a(1) after 20 ns;
+a(2)<= not a(2) after 50 ns;
+a(3) <= not a(3) after 40 ns;
+end process;
+process
+begin
+wait for 10 ns;
+
+b<="1010";
+wait for 20 ns;
+b<="0110";
+wait for 40 ns;
+b<="1000";
+wait for 50 ns;
+wait;
+end process;
+end toptb2 ;
+
+ 
+ 
+ 
+ 
+ #PROCEDURE 
+ 
+ 
+ 
+ library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+ 
+entity top is
+
+end top;
+ 
+architecture Behavioral of top is
+ procedure tutorial(ir:in std_logic_vector(31 downto 0);
+                     d:out std_logic_vector(31 downto 0)                   ) is
+begin
+d:=ir+12;
+ end tutorial;
+ signal i,io:std_logic_vector(31 downto 0):=(others=>'0');
+ begin
+ process(i)
+ variable temp:std_logic_vector(31 downto 0):=(others=>'0');
+ begin
+ tutorial(i,temp);
+io<=temp;
+end process;
+end Behavioral;
+
+
+
+ 
 
