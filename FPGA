@@ -649,3 +649,55 @@ end Behavioral;
 
 
 
+
+
+
+
+
+
+
+
+
+#STRUCTURAL MODELING STYLE
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity ha is
+    Port ( a,b : in STD_LOGIC;
+           s,c : out STD_LOGIC);
+end ha;
+
+architecture Behavioral of ha is
+
+begin
+s<=a xor b;
+c<=a and b;
+
+
+end Behavioral;
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+
+entity fa is
+    Port ( a,b,cin : in STD_LOGIC;
+           s,c : out STD_LOGIC);
+end fa;
+
+architecture Behavioral of fa is
+component ha is
+    Port ( a,b : in STD_LOGIC;
+           s,c : out STD_LOGIC);
+end component;
+signal t1,t2,t3:std_logic:='0';
+begin
+H1: ha port map(a,b,t1,t2);
+H2: ha port map(t1,cin,s,t3);
+c<=t2 or t3;
+end Behavioral;
+
