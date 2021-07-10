@@ -1109,3 +1109,76 @@ end process;
 end Behavioral;
 
 
+
+
+
+
+
+#3 PROCESS MOORE MACHINE
+
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+
+entity MOORE is
+    Port ( clk : in STD_LOGIC;
+           rst : in STD_LOGIC;
+           dout : out STD_LOGIC;
+           din : in STD_LOGIC);
+end MOORE;
+
+architecture Behavioral of MOORE is
+type state_type is (s0,s1);
+signal state,next_state:state_type:=s0;
+
+begin
+
+reset:process(clk)
+begin
+if rising_edge(clk)then
+if (rst='1') then
+state<=s0;
+else 
+state<=next_state;
+end if;
+end if;
+end process;
+
+
+  
+process(state,din)
+begin
+case(state) is
+when  s0 =>
+if din='1' then
+next_state<=s1;
+else
+next_state<=s0;
+end if;
+when  s1 =>
+if din='1' then
+next_state<=s0;
+else
+next_state<=s1;
+end if;
+end case;
+end process;
+
+output_logic:process(state)
+begin
+if state=s0 then
+dout<='0';
+elsif state=s1 then
+dout<='1';
+else
+dout<='0';
+end if;
+end process;
+
+
+end Behavioral;
+
