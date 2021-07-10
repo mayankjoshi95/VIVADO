@@ -701,3 +701,216 @@ H2: ha port map(t1,cin,s,t3);
 c<=t2 or t3;
 end Behavioral;
 
+
+
+
+
+
+
+
+
+
+
+
+
+#structutal modeling style 32:! mux using 8:1mux
+
+
+
+
+
+
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity mux is
+    Port ( d0 : in STD_LOGIC;
+           d1 : in STD_LOGIC;
+           d2 : in STD_LOGIC;
+           d3 : in STD_LOGIC;
+           d4 : in STD_LOGIC;
+           d5 : in STD_LOGIC;
+           d6 : in STD_LOGIC;
+           d7 : in STD_LOGIC;
+           s0,s1,s2 : in STD_LOGIC;
+           dout: out std_logic
+           );
+end mux;
+architecture Behavioral of mux is
+signal temp: std_logic;
+signal sel: std_logic_vector(2 downto 0);
+begin
+sel(0) <=s0;
+sel(1) <=s1;
+sel(2) <=s2;
+process(d0,d1,d2,d3,d4,d5,d6,d7,sel)
+begin
+
+case (sel) is
+when "000" =>
+temp<=d0;
+when "001" =>
+temp<=d1;
+when "010" =>
+temp<=d2;
+when "011" =>
+temp<=d3;
+when "100" =>
+temp<=d4;
+when "101" =>
+temp<=d5;
+when "110" =>
+temp<=d6;
+when "111" =>
+temp<=d7;
+when others=>
+temp<='0';
+end case;
+end process;
+dout<=temp;
+end Behavioral;
+
+
+
+#design_1_wrapper.vhd
+
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity design_1_wrapper is
+  port (
+    d0 : in STD_LOGIC;
+    d0_1 : in STD_LOGIC;
+    d0_2 : in STD_LOGIC;
+    d0_3 : in STD_LOGIC;
+    d1 : in STD_LOGIC;
+    d1_1 : in STD_LOGIC;
+    d1_2 : in STD_LOGIC;
+    d1_3 : in STD_LOGIC;
+    d2 : in STD_LOGIC;
+    d2_1 : in STD_LOGIC;
+    d2_2 : in STD_LOGIC;
+    d2_3 : in STD_LOGIC;
+    d3 : in STD_LOGIC;
+    d3_1 : in STD_LOGIC;
+    d3_2 : in STD_LOGIC;
+    d3_3 : in STD_LOGIC;
+    d4 : in STD_LOGIC;
+    d4_1 : in STD_LOGIC;
+    d4_2 : in STD_LOGIC;
+    d4_3 : in STD_LOGIC;
+    d5 : in STD_LOGIC;
+    d5_1 : in STD_LOGIC;
+    d5_2 : in STD_LOGIC;
+    d5_3 : in STD_LOGIC;
+    d6 : in STD_LOGIC;
+    d6_1 : in STD_LOGIC;
+    d6_2 : in STD_LOGIC;
+    d6_3 : in STD_LOGIC;
+    d7 : in STD_LOGIC;
+    d7_1 : in STD_LOGIC;
+    d7_2 : in STD_LOGIC;
+    d7_3 : in STD_LOGIC;
+    dout : out STD_LOGIC;
+    s0 : in STD_LOGIC;
+    s0_1 : in STD_LOGIC;
+    s1 : in STD_LOGIC;
+    s1_1 : in STD_LOGIC;
+    s2 : in STD_LOGIC
+  );
+end design_1_wrapper;
+
+architecture STRUCTURE of design_1_wrapper is
+  component design_1 is
+  port (
+    s0 : in STD_LOGIC;
+    s1 : in STD_LOGIC;
+    s2 : in STD_LOGIC;
+    dout : out STD_LOGIC;
+    d0 : in STD_LOGIC;
+    d0_1 : in STD_LOGIC;
+    d1 : in STD_LOGIC;
+    d2 : in STD_LOGIC;
+    d3 : in STD_LOGIC;
+    d4 : in STD_LOGIC;
+    d5 : in STD_LOGIC;
+    d6 : in STD_LOGIC;
+    d7 : in STD_LOGIC;
+    d1_1 : in STD_LOGIC;
+    d2_1 : in STD_LOGIC;
+    d3_1 : in STD_LOGIC;
+    d4_1 : in STD_LOGIC;
+    d5_1 : in STD_LOGIC;
+    d6_1 : in STD_LOGIC;
+    d7_1 : in STD_LOGIC;
+    d0_2 : in STD_LOGIC;
+    d1_2 : in STD_LOGIC;
+    d2_2 : in STD_LOGIC;
+    d3_2 : in STD_LOGIC;
+    d4_2 : in STD_LOGIC;
+    d5_2 : in STD_LOGIC;
+    d6_2 : in STD_LOGIC;
+    d7_2 : in STD_LOGIC;
+    d0_3 : in STD_LOGIC;
+    d1_3 : in STD_LOGIC;
+    d2_3 : in STD_LOGIC;
+    d3_3 : in STD_LOGIC;
+    d4_3 : in STD_LOGIC;
+    d5_3 : in STD_LOGIC;
+    d6_3 : in STD_LOGIC;
+    d7_3 : in STD_LOGIC;
+    s0_1 : in STD_LOGIC;
+    s1_1 : in STD_LOGIC
+  );
+  end component design_1;
+begin
+design_1_i: component design_1
+     port map (
+      d0 => d0,
+      d0_1 => d0_1,
+      d0_2 => d0_2,
+      d0_3 => d0_3,
+      d1 => d1,
+      d1_1 => d1_1,
+      d1_2 => d1_2,
+      d1_3 => d1_3,
+      d2 => d2,
+      d2_1 => d2_1,
+      d2_2 => d2_2,
+      d2_3 => d2_3,
+      d3 => d3,
+      d3_1 => d3_1,
+      d3_2 => d3_2,
+      d3_3 => d3_3,
+      d4 => d4,
+      d4_1 => d4_1,
+      d4_2 => d4_2,
+      d4_3 => d4_3,
+      d5 => d5,
+      d5_1 => d5_1,
+      d5_2 => d5_2,
+      d5_3 => d5_3,
+      d6 => d6,
+      d6_1 => d6_1,
+      d6_2 => d6_2,
+      d6_3 => d6_3,
+      d7 => d7,
+      d7_1 => d7_1,
+      d7_2 => d7_2,
+      d7_3 => d7_3,
+      dout => dout,
+      s0 => s0,
+      s0_1 => s0_1,
+      s1 => s1,
+      s1_1 => s1_1,
+      s2 => s2
+    );
+end STRUCTURE;
+
+
