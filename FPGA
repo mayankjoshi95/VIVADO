@@ -914,3 +914,104 @@ design_1_i: component design_1
 end STRUCTURE;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#FSM 
+
+MEALY 3 PROCESSS 
+
+
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity TP is
+    Port ( clk ,din: in STD_LOGIC;
+           rst : in STD_LOGIC;
+           dout : out STD_LOGIC);
+end TP;
+
+architecture Behavioral of TP is
+type state_type is (s0,s1);
+signal state,next_state:state_type:=s0;
+
+begin
+reset_logic:process(clk)
+begin
+if rising_edge(clk) then
+if rst='1' then
+state<=s0;
+else
+state<=next_state;
+END IF;
+END IF;
+end process;
+next_state_logic:process(din,state)
+begin
+case(state) is 
+when s0=>
+if (din ='1') then
+next_state<=s1;
+else
+next_state<=s0;
+end if;
+when s1=>
+if (din='0') then
+next_state<=s1;
+else 
+next_state<=s0;
+end if;
+when others=>
+next_state<=s0;
+end case;
+end process;
+output_logic:process(din,state)
+begin
+case(state) is
+when s0=>
+if (din='1') then
+dout<='0';
+else
+dout<='0';
+end if;
+when s1=>
+if (din='1') then
+dout<='1';
+else
+dout<='0'; 
+end if;
+end case;
+end process;
+
+end Behavioral;
+
+
+
+
+
+
