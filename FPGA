@@ -1059,7 +1059,7 @@ end process;
 
 end Behavioral;
 
-
+#one process mealy machine
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
