@@ -53,6 +53,10 @@ The Schematic Viewer allows you to visualize the primitive properties and the co
 #after bitsttream put on hardware manager
 #open target auto connect
 
+
+##other way for constraints we can first make an xdc file by going on to a folder of constraint clicking it thne add contraints and then copy master xdc file an dcopy in new xdc file
+then replce with the switches led we want.
+
 # for VHDL 2008 shift operation
 
 library IEEE;
