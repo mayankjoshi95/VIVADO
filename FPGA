@@ -74,6 +74,27 @@ HERE HEXAGON REPRESENT CLOCKS
 FORE X IF WE HAVE 676 DESIGN WE CAN BLOCK REGION NOT AVAILABLE FOR LOWER PINS TRHROUGH I/O PLANNING
 ##THNE USING MIGRATE TO RTL WE SEE WE HAVE ALL OUR CONSTRAINTS
 
+##signal 
+cases whee wemight have to reuuse our output port then signal is used.
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity top is
+    Port ( a : in STD_LOGIC;
+           b : in STD_LOGIC;
+           y : out STD_LOGIC);
+end top;
+
+architecture Behavioral of top is
+signal temp: std_logic:='0';
+begin
+temp<=a and b;
+y<=not temp;
+end Behavioral;
+##whenever there are undefined net there we have to use signal
+
+
 # for VHDL 2008 shift operation
 
 library IEEE;
