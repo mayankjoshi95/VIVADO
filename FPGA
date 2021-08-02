@@ -56,6 +56,17 @@ The Schematic Viewer allows you to visualize the primitive properties and the co
 
 ##other way for constraints we can first make an xdc file by going on to a folder of constraint clicking it thne add contraints and then copy master xdc file an dcopy in new xdc file
 then replce with the switches led we want.
+#to check the power consumption sythesis then implement the see power
+#to have good implementation go to setting then to implementation then to post place power opt design (this option reduce power dissipate whn do dynamic clockingg)
+ enable it
+ 
+ 
+ #SYNTHESIS SETTING
+ 
+ IT IS BAD TO SOMETHING BETWEEN THE CLOCK LINES AND ITS RESOURCE THUS TURNING ON GATE CLOCK CONVERSION THEN VIVADO WILL TRY TO REMOVE THIS GATE AND THEN APPLY SOMETHING
+ WHICH IS IMPLEMENTED EASILY ON FPGA.
+ FOR FSM EXTRACTION THERE ARE VARIOUS ENCODING
+ 
 
 # for VHDL 2008 shift operation
 
