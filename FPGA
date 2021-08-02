@@ -31,6 +31,13 @@ std_logic_1164:-contains std_logic and all the logic operation
 numeric_std (_logic_signed or-logic_unsigned):- all the artihmetic operation(input a\can be unsigned and signed data type an =d for both we need different hardwwware)
 #PRIMITIVES ARE THE FUNDAMENTAL BLOCK WHICH ARE USE DTO DEVLOP THE CIRCUIT WHICH FPGA CAN UNDERSTAND
 #THE PROCESS OF CONVERSION FROM FPGA CODE TO PRIMITIVES IS HANDLED USING SYNTHESIS
+#NOW SYNTHESIS HAS TRANSFORMED OUR CODE TO SOMETHING THAT FPGA UNDERSATND NOW WE HAVE TO PUT THAT ENTIRE DESIGN ON FPGA DIE SO WE NEED TO SPECIFY INPU AND OUPUT PORT SO THAT THE TOOL 
+IDENTIFY THE BEST PLACE TO PLACE OUR DESIGN.
+#ADD A CONSTRAINT
+#SCALAR PORTS
+#save contraints
+#implementation
+#schematic there you will see blue dot or something showing our design
 
 
 # for VHDL 2008 shift operation
