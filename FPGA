@@ -18,7 +18,13 @@ end Behavioral;
 #USE IEEE.STD_LOGIC_1164.ALL:-FROM THAT FOLDER WE ARE USING THIS LIBRARY.(LIBRARY IS SYSTEM INDEPENDENT BUT ENTITY AND ARCHITECTURE ARE SYSTEM DEPENDENT)
 ENTITY(SPECIFIES ABOUT INPUT AND OUTPUT PORT AND ARCHITECTURE TELL ABOUT THE LOGIC)
 
-
+#SINGLE BIT REPRESENTED AS STD_LOGIC
+#FOR LAST I/O PORT WE DONOT ADD SEMICOLON
+#SPACE BETWEEN ARCHITECTURE AND BEGIN IS SIGNAL ,COMPONENT ,MEMEORY ETC.
+=< ASSIGNMENT OPERATOR.
+#FOR MORE BIT std_logic_vector(3 downto 0);
+std_logic_1164:-contains std_logic and all the logic operation
+numeric_std (_logic_signed or-logic_unsigned):- all the artihmetic operation(input a\can be unsigned and signed data type an =d for both we need different hardwwware)
 
 # for VHDL 2008 shift operation
 
