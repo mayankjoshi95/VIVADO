@@ -46,8 +46,12 @@ at earlier stages of a synthesis process when technology mapping is not yet comp
 The goal of this view is to be as close as possible to the original HDL code. In the RTL view, the 
 design is represented in terms of macro blocks, such as adders, multipliers, and registers. Standard combinatorial logic is mapped onto logic gates, such as AND, NAND, and OR.
 
-
-
+#Use of Post-Synthesis View
+Graphical representation of the post-synthesis (“optimized and mapped“) netlist
+(.ngc file produced by XST) contains Xilinx primitives as defined in the UNISIM library, such as LUTs, DCM, I/O buffers, and flip-flops. 
+The Schematic Viewer allows you to visualize the primitive properties and the constraints attached to them.
+#after bitsttream put on hardware manager
+#open target auto connect
 
 # for VHDL 2008 shift operation
 
