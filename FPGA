@@ -99,7 +99,18 @@ end Behavioral;
 #for value of signal>1 use "" i.e signal temp:std_logic_vector(3 downto 0):="0000";
 #siganl temp:std_logic_vector(3 downto 0):=x"0000";each 0 means 0000;
 #signal temp:std_logic_vector(255 downto 0):=(others=>'0');#most right way
+#signal assignment<=
 
+
+
+
+
+
+#variable
+
+
+variable donot have the global scope it is defined between process and begin
+assignment if odne using:=
 # for VHDL 2008 shift operation
 
 library IEEE;
