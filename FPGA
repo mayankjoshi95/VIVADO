@@ -80,6 +80,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 
+they are global variable any process can get acces to them
+
+
 entity top is
     Port ( a : in STD_LOGIC;
            b : in STD_LOGIC;
@@ -93,7 +96,9 @@ temp<=a and b;
 y<=not temp;
 end Behavioral;
 ##whenever there are undefined net there we have to use signal
-
+#for value of signal>1 use "" i.e signal temp:std_logic_vector(3 downto 0):="0000";
+#siganl temp:std_logic_vector(3 downto 0):=x"0000";each 0 means 0000;
+#signal temp:std_logic_vector(255 downto 0):=(others=>'0');#most right way
 
 # for VHDL 2008 shift operation
 
