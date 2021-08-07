@@ -1174,11 +1174,11 @@ entity top is
 end top;
  
 architecture Behavioral of top is
-type record1 is record
+type record1 is record#here wwe have multiple datatype
 a,b :std_logic;
 c,d: std_logic;
 end record;
-constant stimuli : record1 :=('1','0','1','1');
+constant stimuli : record1 :=('1','0','1','1');#access the data we declare an instance stimuli for it datatype of record1
 signal a1,a2,a3:std_logic;
 begin
 a1<=stimuli.c;
@@ -1222,13 +1222,81 @@ b2<=stimuli.d;
 end Behavioral;
 
 
+#counter
 
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+entity counter is
+Port(rst,clk,dwn:in std_logic;
+dout:out std_logic_vector(3 downto 0)
+);end counter;
+architecture count_arch of counter is
+signal count:std_logic_vector(3 downto 0):="0000";
+begin
+process(rst,clk)
+begin
+if (rst='1') then
+count<="0000";
+elsif (clk'event and clk='1') then
+if (dwn='1') then
+count<=count-1;
+else
+count<=count+1;
+end if;
+end if;
+end process;
+end count_arch;
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+entity counttb is
+end counttb;
+
+
+architecture Behavioral of counttb is
+signal rst,clk,dwn:std_logic:='0';
+signal dout:std_logic_vector(3 downto 0);
+component counter is
+Port(rst,clk,dwn:in std_logic;
+dout:out std_logic_vector(3 downto 0)
+);end component;
+
+begin
+C1: counter port map(rst=>rst,clk=>clk,dwn=>dwn,dout=>dout);
+clkprocess:process(clk)
+begin
+clk<=not clk after 10ns;
+end process;
+control_process:process
+begin
+rst<='1';
+wait for 50 ns;
+rst<='0';
+dwn<='1';
+wait for 200 ns;
+dwn<='0';
+wait for 50 ns;
+rst<='1';
+wait for 50 ns;
+wait;
+end process;
+end behaviorial;
 
 
 
 
 
 #USING IP  catelog  adder/subtractor
+CUSTOMIZE IP
 
 
 
@@ -1308,6 +1376,10 @@ end Behavioral;
 
 #STRUCTURAL MODELING STYLE
 
+#TARGET IS TO UNDERSTAND HOW WE DECLARE AN IMPLICIT WAY OF MAPPING OUR CODE,EXPLICIT WAY ,ALSO HOW WE USE VIVADO IPI ALSO ,HOW WE HANDLE DEFINED AND UNDEFINED NET,
+STRUCTURAL MODELLING STYLE SKELETON
+#THERE ARE TWO NETS CALLED DEFOINED AND UNDEFINED NET IN A VHDL CODE SIGNAL ARE USED
+TO DECLAR
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -1344,7 +1416,7 @@ component ha is
 end component;
 signal t1,t2,t3:std_logic:='0';
 begin
-H1: ha port map(a,b,t1,t2);
+H1: ha port map(a,b,t1,t2);#REFEREED AS AN IMPLICIT WAY OF DECLARING A PORT
 H2: ha port map(t1,cin,s,t3);
 c<=t2 or t3;
 end Behavioral;
