@@ -996,7 +996,7 @@ end toptb2 ;
 
 
 
-#FORCE CONSTANT
+#FORCE CONSTANT# here a beloww tb is of signal 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
  
@@ -1060,8 +1060,8 @@ b<="0110";
 wait for 10 ns;
 a<="0100";
 b<="1000";
-wait for 10 ns;
-wait;
+wait for 10 ns;#if we wish we can do this
+wait;#this extra wait or helping proces qith not to got to infifnti loop
 end process;
 end toptb2 ;
 
@@ -1091,13 +1091,13 @@ end process;
 end toptb2 ;
 
  
- 
+ #prefer to go with the force clock when we have a single bit signal
  
  
  #PROCEDURE 
  
  
- 
+ #between architecture and begin we can add a procedure
  library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
@@ -1108,19 +1108,20 @@ entity top is
 
 end top;
  
-architecture Behavioral of top is
+architecture Behavioral of top is#declare after architecture and before begin
  procedure tutorial(ir:in std_logic_vector(31 downto 0);
-                     d:out std_logic_vector(31 downto 0)                   ) is
+                     d:out std_logic_vector(31 downto 0)                
+                     ) is   #we donot add any semicolon
 begin
 d:=ir+12;
- end tutorial;
- signal i,io:std_logic_vector(31 downto 0):=(others=>'0');
+ end tutorial;#this complete the processor.
+ signal i,io:std_logic_vector(31 downto 0):=(others=>'0');#sginal i is where wwe apply the input
  begin
  process(i)
- variable temp:std_logic_vector(31 downto 0):=(others=>'0');
+ variable temp:std_logic_vector(31 downto 0):=(others=>'0');#since outpiut cannot directly connect to signal thus we create
  begin
  tutorial(i,temp);
-io<=temp;
+io<=temp;#here we assign temp to a port
 end process;
 end Behavioral;
 
