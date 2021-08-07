@@ -1418,8 +1418,14 @@ signal t1,t2,t3:std_logic:='0';
 begin
 H1: ha port map(a,b,t1,t2);#REFEREED AS AN IMPLICIT WAY OF DECLARING A PORT
 H2: ha port map(t1,cin,s,t3);
+
+
+H1:ha port map(s=>t1,c=>t2,a=>a,b=>b);
+H2 :ha port map(t1,cin,s,t3)#explicit way of declaring
 c<=t2 or t3;
 end Behavioral;
+#for larger compoent stick to explicit way
+
 
 
 
