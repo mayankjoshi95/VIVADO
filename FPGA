@@ -199,6 +199,46 @@ now since entity has no port then how to generate stimuli and apply stimulus to 
 
 
 a of the haladder (component) we connect with a of signal
+#using signal we create an instance using component we connect them
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity ha is
+Port (a,b:in std_logic;
+s,c:out std_logic );
+end ha;
+
+architecture Behavioral of ha is
+
+begin
+
+s<=a xor b;
+c<=a and b;
+end Behavioral;
+--------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity hatb is
+end hatb;
+architecture hatb2 of hatb is
+component ha is
+Port (a,b:in std_logic;
+s,c:out std_logic );
+end component;
+signal a,b:std_logic:='0';
+signal s,c:std_logic;
+begin
+DUT:ha port map(a=>a,b=>b,s=>s,c=>c);
+a<='1' after 10 ns,'1' after 20 ns,'0' after 20 ns,'1' after 50 ns;
+b<='1' after 10 ns,'1' after 20 ns,'0' after 20 ns,'1' after 50 ns;
+c<='1' after 10 ns,'1' after 20 ns,'0' after 20 ns,'1' after 50 ns;
+end hatb2;
+ 
+
 
 
 
