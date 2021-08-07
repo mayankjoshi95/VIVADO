@@ -149,14 +149,54 @@ end top2;
 
 1.GATE LEVEL/DATAFLOW:- this is utilized to implement a simple combinational circuit or a basic logic gatei.e whenever we can replace our circuit by basic logic gate
 2.BEHAVIORAL:-if yo are able to replace behaviour of the system i.e if you are able to form a truth table of your system i.e we donot know which all component are required but 
-can predict the behaviour.say for mux we know for S0,S1 used to get the output also if form state diagram,for specific waveform .Also by defauult behavoral style.
+can predict the behaviour.say for mux we know for S0,S1 used to get the output also if form state diagram,for specific waveform .Also by defauult behavoral style.FSM
 3.STRUCTURAL:-if you have your own component say half adder and you are reusing that component then we usit for building full adder also to implent large mux using smalll mux.
-4.Switch level modelling style is not synthesizable/IP
+4.Switch level modelling style is not synthesizable/IP I.E IF WE CAN IMPLEMENT SYSTEM WITH NMOS OR PMOS OR CMOS.
+so each system atleast has a four different ways of implementing.
+ADVANTAGE OF RIGHT STYLE IS WE WILL BE ABLE TO CHOOSE SYSTEM WITH MINIMUM CODE.
+
 
 
 HERE WE HAVE FOUR DIFFERENT TYPES OF AN ARCHITECTURE  BASICALLY FOUR DIIFFERENT WAY TO IMPLEMENT A SYSTEM
 1.DRAW THE STATE DIAGRAM  2.BASIC LOGIC STRUCTURE (i.e REPLACE THE SYSTEM WITH THE BASIC LOGIC GATE 3.HERE WE HAVE ADDED A COMPONENT i.e HALF ADDER DEVELOPED BY US
 THAT WE ARE USING TO BUILD A COMPLEX SYSTEM4.WE ARE ABLE TO BUILD A SYSTEM WITH PMOS AND NMOS.
+
+
+
+### DATAA FLOW MODELLING STYLE
+1. ALL NETS DEFNED IN THE ENTITY 
+2.FEW NETS ARE UNDEFINED IN AN ENTITY
+
+##REMEMBER ALL THE NETS ARE NEED STO BE DEFINED SAY FOR XOR NETS ARE DEFINED IN THE ENTITY BUT FOR
+HALF ADDER NETS ARE NOT DEFINED IN ENTITY FOR THAT WE HAVE TO WRITE THE SIGNAL
+
+
+3.CONDITIONAL SIGNAL ASSIGNMENT AND SELECTED SIGNAL ASSIGNMENT(THESE ALLOW TO IMPLEMENT SYSTEM WHOSE BEHAVIOUR IS KNOWN )
+
+
+#HALF ADDER 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity ha is
+Port (a,b:in std_logic;
+s,c:out std_logic );
+end ha;
+
+architecture Behavioral of ha is
+
+begin
+
+s<=a xor b;
+c<=a and b;
+end Behavioral;
+
+
+##test bench when writing a test bench code first you have to design the instance that you are testing that can be done by using a component keyword.
+now since entity has no port then how to generate stimuli and apply stimulus to design under test(DUT ) it is done by using the signal
+#here for input we initialize the signal for output we donot
+
 
 
 
