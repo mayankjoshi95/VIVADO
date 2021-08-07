@@ -111,6 +111,52 @@ end Behavioral;
 
 variable donot have the global scope it is defined between process and begin
 assignment if odne using:=
+
+In a sequential circuit  signal and variabe are different
+in a combinational circuit signal and variable are same
+
+#understanding type conversion and printing
+
+#first we convert logic _vector to an unsigned or say signed
+to integer is in numericstd.all
+for procees begin if no parameter then we just be adding the wait as if not it may hang our system to infinite time
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+
+
+entity top is
+end top;
+
+architecture top2 of top is
+signal temp:std_logic_vector(3 downto 0):="1011";
+signal data:integer range 0 to 30:=8;
+begin
+data<=to_integer(unsigned(temp));
+process
+begin
+wait for 5 ns;
+report "Value of data is" &integer'image(data);
+wait;
+end process;
+
+
+end top2;
+
+
+#DIFFERENT MODELLING STYLE IN AN VHDL
+
+1.GATE LEVEL:-
+2.DATAFLOW
+3.BEHAVIORAL
+4.STRUCTURAL
+
+
+
+
+
+
 # for VHDL 2008 shift operation
 
 library IEEE;
