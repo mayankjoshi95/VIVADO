@@ -240,6 +240,158 @@ end hatb2;
  
 
 
+#generating clock signal for the input
+i.e using force clock and force constant
+
+clock_stimulus:process(a,b)
+begin
+a<=not a after 10ns;
+b<=not b after 20 ns;
+end process
+
+
+
+#1 bit adder
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity fa is
+Port (a,b,cin:in std_logic;
+s,c:out std_logic );
+end fa;
+
+architecture Behavioral of fa is
+signal t1,t2,t3:std_logic:='0';
+begin
+t1<=a xor b;
+t2<=t1 and cin;
+t3<= a and b;
+s<=t1 xor cin;
+c<= t2 or t3;
+
+end Behavioral;
+--------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity fatb is
+end fatb;
+architecture fatb2 of fatb is
+component fa is
+Port (a,b,cin:in std_logic;
+s,c:out std_logic );
+end component;
+signal a,b,cin:std_logic:='0';
+signal s,c:std_logic;
+begin
+DUT:fa port map(a=>a,b=>b,s=>s,cin=>cin);
+clock_stimulus:process(a,b,cin)
+begin
+a<=not a after 10ns;
+b<=not b after 20 ns;
+
+end process;
+end fatb2;
+##binary to gray converter
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+ 
+ 
+entity bin2gray is
+    Port ( b : in STD_LOGIC_VECTOR (3 downto 0);
+           g : out STD_LOGIC_VECTOR (3 downto 0));
+end bin2gray;
+ 
+architecture Behavioral of bin2gray is
+ 
+begin
+g(3) <= b(3);
+g(2) <= b(3) xor b(2);
+g(1) <= b(2) xor b(1);
+g(0) <= b(1) xor b(0);
+ 
+ 
+end Behavioral;
+
+
+##Conditional vs selected concurrent statement
+
+#conditional
+ibrary IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+ 
+ 
+entity mux is
+    Port ( a,b,c,d : in STD_LOGIC;
+           ysc, ycs : out STD_LOGIC;
+           sel : in STD_LOGIC_VECTOR (1 downto 0));
+end mux;
+ 
+architecture Behavioral of mux is
+ 
+begin
+-------------Conditional Concurrent Signal Assg
+--ycc <= a when (sel = "00") else
+--     b when (sel = "01") else
+--     c when (sel = "10") else
+--     d when (sel = "11") else
+--     '0';
+ 
+--p:process(a,b,c,d,sel)
+--begin
+--if(sel = "00") then
+-- yie <= a;
+--elsif (sel = "01") then
+--yie <= b;
+--elsif (sel = "10") then
+--yie <= c;
+--elsif (sel = "11") then
+--yie <= d;
+--else
+--yie <= '0';
+--end if;
+--end process;
+
+
+#selcted assignment
+
+
+
+with sel select
+ysc <= a when "00",
+     b when "01",
+     c when "10",
+     d when "11",
+     '0' when others;
+--------------Case 
+ 
+process(a,b,c,d,sel)
+begin
+case(sel) is 
+when "00" =>
+ ycs <= a;
+when "01" =>
+ ycs <= b;
+ when "10" =>
+ ycs <= c;
+ when "11" =>
+ ycs <= d;
+ when others =>
+ ycs <= '0'; 
+end case;
+end process;
+ 
+end Behavioral;
+
+
+
+
+
 
 
 
