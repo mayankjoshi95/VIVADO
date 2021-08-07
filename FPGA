@@ -727,6 +727,56 @@ end process;
  
 end Behavioral;
 
+#temp can also be used tto transmit the data after alll the operation to the dout pin
+
+#7 SEGMENT DISPLAY
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity top is
+Port(bin:in std_logic_vector(3 downto 0);
+dout:out std_logic_vector(6 downto 0));
+end top;
+
+architecture behavioral of top is
+signal temp:std_logic_vector(7 downto 0):=x"00";
+
+begin
+process(bin)--this is how we start combinational ckt
+begin
+case(bin) is
+when "0000"=>
+temp<=x"02";
+when "0001"=>
+temp<=x"9e";
+when "0010"=>
+temp<=x"24";
+when "0011"=>
+temp<=x"0C";
+when "0100"=>
+temp<=x"98";
+when "0101"=>
+temp<=x"48";
+when "0110"=>
+temp<=x"C0";
+when "0111"=>
+temp<=x"1E";
+when "1000"=>
+temp<=x"00";
+when "1001"=>
+temp<=x"18";
+when others=>
+temp<="ZZZZZZZZ";
+end case;
+end process;
+dout<=temp(7 downto 1);
+end behavioral ;
+
+
+
+
+#GOOD PRACTICE IS TO ADD ALL THE REMAINIGN CASES TO REMOVE A LATCH.
+
 
 #D FLIP FLOP
 
