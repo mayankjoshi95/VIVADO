@@ -1126,6 +1126,35 @@ end process;
 end Behavioral;
 
 
+#ARRAY (IT IS THE COLLECTION OF OBJECT OF THE SAME TYPE .SAME TYPE CAN BE (STD_LOGIC,STD_BIT,BIT)
+TYPE (type_name) IS ARRAY(SPECIFICATION)OF data_Type#specification is th range say (0 to4 ) #data type is the bit ,std_logic,std_bit_vector;#by this we define an aray 
+#how to use the arrray
+signal signal_name:typename:=(intial values);
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+entity Arrays is
+port
+(array_out:out std_logic_vector(7 downto 0)
+);
+end entity Arrays;
+
+architecture Behavioral of Arrays is
+Type hdl_learning is Array (0 to 3) of std_logic_vector(7 downto 0);
+signal  check : hdl_learning :=("00000000","00000001","00000010","00000011");
+
+begin 
+
+array_out<=check(0);
+
+ end Behavioral; 
+
+                                                                                                                                                                        
+
+
+
 
  
  #RECORD 
