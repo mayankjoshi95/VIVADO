@@ -322,7 +322,7 @@ end Behavioral;
 ##Conditional vs selected concurrent statement
 
 #conditional
-ibrary IEEE;
+library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
  
  
@@ -335,30 +335,29 @@ end mux;
 architecture Behavioral of mux is
  
 begin
--------------Conditional Concurrent Signal Assg
---ycc <= a when (sel = "00") else
---     b when (sel = "01") else
---     c when (sel = "10") else
---     d when (sel = "11") else
---     '0';
- 
---p:process(a,b,c,d,sel)
---begin
---if(sel = "00") then
--- yie <= a;
---elsif (sel = "01") then
---yie <= b;
---elsif (sel = "10") then
---yie <= c;
---elsif (sel = "11") then
---yie <= d;
---else
---yie <= '0';
---end if;
---end process;
+Conditional Concurrent Signal Assg
+ycc <= a when (sel = "00") else
+     b when (sel = "01") else
+     c when (sel = "10") else
+     d when (sel = "11") else
+     '0';
+ so whenver we have series of implement ation in a conditional concurrrent signal asssignment we use if else
+p:process(a,b,c,d,sel)
+begin
+if(sel = "00") then
+ yie <= a;
+ elsif (sel = "01") then
+yie <= b;
+elsif (sel = "10") then
+yie <= c;
+elsif (sel = "11") then
+yie <= d;
+else
+yie <= '0';
+end if;
+end process;
 
 
-when and then
 
 #selcted assignment
 
@@ -370,6 +369,8 @@ ysc <= a when "00",
      c when "10",
      d when "11",
      '0' when others;
+     
+     #here we have a mux operated in parallel manner
 --------------Case 
  
 process(a,b,c,d,sel)
@@ -389,6 +390,138 @@ end case;
 end process;
  
 end Behavioral;
+
+
+GENERAGE STATEMENT basically replication of certain statemnet
+for.....generate 
+it generate the numbeer of copies  which is determined by the dicrete range
+for continuous behaviour
+label:for identifier in range generate(3 downto 0)(0 to 3 )for integer
+{concrrent_statement}(behaviour)
+end generate [label];#behaviojr is continous using for
+
+## for loop
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity top is
+ Port ( dout:out STD_LOGIC_VECTOR(11 downto 0));
+end top;
+
+architecture Behavioral of top is
+signal a:std_logic_vector:="1010";
+signal b:std_logic_vector:="1000";
+signal c:std_logic_vector:="0011";
+signal temp:std_logic_vector(11 downto 0);
+begin
+--//temp 0=> a(0) b(0) c(0) a(1) b(1) c(1)
+gen_label:for i in 3 downto 0 generate
+temp(3*i)<=a(i);
+temp(3*i+1)<=b(i);
+temp(3*i+2)<=c(i);
+end generate;
+dout<=temp;
+
+
+end Behavioral;
+
+
+
+if....generate
+zero or copy is made conditionally
+discontinity in the behaviour 
+say shhift register from q3(last)to q0(first)
+i.e ceratin block follw repeatitive pattern while some donot
+
+
+
+#if loop
+
+
+label:if expresssion generate
+{concurrent statement}
+end generate[label];
+ here first we willl see the part which create discontinuity
+ 
+ library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity top is
+ Port ( dout:out STD_LOGIC_VECTOR(11 downto 0));
+end top;
+
+architecture Behavioral of top is
+
+signal tempp:std_logic_vector(3 downto 0):="1100";
+signal tempo:std_logic_vector(3 downto 0);
+begin
+--//temp 0=> a(0) b(0) c(0) a(1) b(1) c(1)
+gen_label: for i in 3 downto 0 generate
+g1:if(i=3) generate
+ tempo(i)<=tempp(i-3);
+ end generate g1;
+g2:if (i<3) generate
+tempo(i)<=tempp(i+1);
+end generate g2;
+end generate gen_label;
+end Behavioral;
+##DATATYPES
+1. BIT
+signal temp:bit:='1'
+signal temp :bit_vector(2 downto 0):="001";
+
+2.INTEGER
+signal i1:integer range 0 to 99:=10;-- -2^32/2 to 2^32/2
+process
+variable my_line:line;
+begin
+write(my_line,i1);
+writeline(output,my_line);
+end tbnew;
+end process;
+
+3.natural
+signal n1:natural range 0 to 23;
+
+4 single bit multibit
+signal s1:std_logic;
+signal s2:std_logic_vector(4 downto 0):="10010"
+
+
+
+##ARITHMETIC OPERATOR
++ ,-,* can be synthesizable only 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+ENTITY TB IS
+END TB;
+ARCHITECTURE TBNEW OF TB IS
+signal a1:integer range 0 to 10:=5;
+signal a2: integer range 0 to 10:=6;
+
+begin
+process
+variable res1:integer range 0 to 20:=0;
+variable res2:integer range 0 to 20:=0;
+variable res3:integer range 0 to 20:=0;
+begin
+res1:=a1+a2;
+res2:= a1-a2;
+res3:=a1*a2;
+end process;
+end TBNEW;
+library of use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+it is usefull if we use std_logic_vector and std_logic
+
+
+
+
 
 
 
@@ -424,7 +557,7 @@ res2<=temp2 srl 2;#ror for rotate right
 end tbnew;
 
 
-
+#sla ,srl,sll,rol,srl,sra,ror
 #RELATIONAL OPERATOR =,/=,>,>=,<,<=
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
