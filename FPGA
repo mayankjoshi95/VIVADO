@@ -147,11 +147,16 @@ end top2;
 
 #DIFFERENT MODELLING STYLE IN AN VHDL
 
-1.GATE LEVEL:-
-2.DATAFLOW
-3.BEHAVIORAL
-4.STRUCTURAL
+1.GATE LEVEL/DATAFLOW:- this is utilized to implement a simple combinational circuit or a basic logic gatei.e whenever we can replace our circuit by basic logic gate
+2.BEHAVIORAL:-if yo are able to replace behaviour of the system i.e if you are able to form a truth table of your system i.e we donot know which all component are required but 
+can predict the behaviour.say for mux we know for S0,S1 used to get the output also if form state diagram,for specific waveform .Also by defauult behavoral style.
+3.STRUCTURAL:-if you have your own component say half adder and you are reusing that component then we usit for building full adder also to implent large mux using smalll mux.
+4.Switch level modelling style is not synthesizable/IP
 
+
+HERE WE HAVE FOUR DIFFERENT TYPES OF AN ARCHITECTURE  BASICALLY FOUR DIIFFERENT WAY TO IMPLEMENT A SYSTEM
+1.DRAW THE STATE DIAGRAM  2.BASIC LOGIC STRUCTURE (i.e REPLACE THE SYSTEM WITH THE BASIC LOGIC GATE 3.HERE WE HAVE ADDED A COMPONENT i.e HALF ADDER DEVELOPED BY US
+THAT WE ARE USING TO BUILD A COMPLEX SYSTEM4.WE ARE ABLE TO BUILD A SYSTEM WITH PMOS AND NMOS.
 
 
 
