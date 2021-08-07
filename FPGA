@@ -617,10 +617,44 @@ res3<=temp1 srl 3;
 
 end tbnew;
 
+#BEHAVIOAL MODELLING STYLE
+IT IS THE PREFFERED MODELLING STYLE
+#LEARN COMBINATIONAL CIRCUIT FOR SEQUENTIAL ,WAVEFORM ,FSM.
+BACKBONE OF IT IS THE PROCESS
+#if we have combnational ckt all inout inside a circuit
 
 
+#PROCESS
+process()
+begin
+end process
+library ieee;
 
-#BEHAVOURAL MODELLING STYLE #IF ELSE#DEMUX
+
+use ieee.std_logic_1164.all;
+
+
+entity top is
+Port(a,b,clk,reset:in std_logic;
+y:out std_logic);
+end top;
+
+architecture Behavioral of top is
+begin
+process(clk)--synchronous reset
+processs(clk,reset)--asynchronous reset
+begin
+
+end process;
+end behavioral;
+
+combinational here output depend on all the input.process(a,b,c,d)
+sequential :-ckt in which our system is sensitive to the fastest signal in this acase it is a clock signal .Synchronuous:-process(a,b,c,d) ;Asynchronous:-process(clk)
+
+PROCESS IS A SYSTEM USED TO DEFINE YOUR SYSTEM SELECTIVITY AND SENSITIVITY
+SENSITITVITY LIST MEANS YOUR SYSTEM OUTPUT WILL BE EVALUATED AS SOON AS input VARIABLE SPECIFIED IN process changes. 
+
+ #IF ELSE#DEMUX
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
  
@@ -658,7 +692,7 @@ end process;
  
 end Behavioral;
 
-
+#also notice that jif you have not used a=0,b=0,c=0,d=0 it happens that only writing a<=din leads to the other value as the previous value
 
 
 #MUX
