@@ -2195,7 +2195,7 @@ end Behavioral;
 
 
 
-###IP 
+###IP it is fundamental block when you specify your design in a graphical way   
 1.HOW TO CREATE AN IP
 HOW YOU REFRESH YOUR REPOSITORY
 2.CUSTOMIZATION
@@ -2203,6 +2203,93 @@ HOW YOU REFRESH YOUR REPOSITORY
 
 
 1.HOW TO CREATE IP
-2.
+##now say if i chose nexys 4 ddr then our ip will be compatible with artix board .
+2.after say wirting code for and then ypou go to create block design 
+here we can either Package a new IP for th eevivado IP catelog or you can create a new AXI4 peripheral and attach it to an IP so that IP can be utilised with the zynq or the microblaze 
+processor .
+#cuz default communication interface i.e is used for communication in a FPGA based SOC is an AXI4
+3.next #we choode package our project to the current project 
+
+##now we have the IP package .
+the PACKAGING STEPS ARE .
+
+##how to refresh the repository 
 
 
+##if you try to run the previous ip onto the different project then you will not be abble to  run on it .
+then we go to the ip setting and then go to repository to add th eproject in which the ip was saved and then add it apply then you will get that ip onto the project and this is how you 
+refresh your repository.
+
+
+##now say we want  to change the ip then click on the IP PACKAGER and it will create tthe new project.
+and then change the feature 
+
+##in the identification we choose the categories.##say for communication categories .
+
+##then we use repackage ip and then you close the project .#then use report ip staauts we get tab of report ip .
+##then we can just upgrade select .
+
+
+##SO NOW WE UNDERSTAND HOW WE CREATE A CONFIGURATION IP.AN IP WHICH CONSIST OF SOME CONFIGURATION PARAMETER .THAT ALLOW USER TO USE AN IP FOR COMPLEX SYSTEM .
+##LETS SAY WE HAVE XOR GATE BUT HERE USER HAS THE PROVISION TO INCREASE THE WIDTH SIZE SO USER CAN CONFIGURE OUR IP TO HAVE A HIGHER OR LOWER SIZE .
+
+##whenever you require an ip to have a configurational parameter so you start with the generic();generic is where we define some parameter which will be used to define the size of the code
+##after writing program -> create the package ip from setting ->next->finish.->customization and GUI ->it has width as variable in customization and GUI ->so if i change width to 10 then autoamtically ip will 
+be from 9:0->then we create block design and add the ip and there we see the parameter width ->if we cahnge the width to 5 then the ip is from 5:0->make them external ->validate the design.
+->then proceed with VHDL WRAPPER .
+
+
+
+##BARREL SHIFTER 
+
+IT IS COMMON IN SIGNAL PROCESSING WHERE YOU WANT TO PERFORM SHIFT OPERATION IN A SINGLE CYCLE.IT PERFORM THE SHIFT OPERATION WITHOUT USING THE SEQUENTIAL CIRCUIT .
+SO ASSUME THAT WE HAVE TWO SELECTION PIN THIS ALLOW UUS TO HAVE FOUR OPERATION  
+
+S0 S1(0,0),(0,1),(1,0),(1,1) THEN (1ST.Y1 Y2 Y3 Y4)(2ND(Y3,Y0,Y1,Y2))(3RD(Y2,Y3,Y0,Y1))(4TH (Y1,Y2,Y3,Y0))
+
+TO IMPLMENT THIS WE USE 8 2*1 MUX FOR ONE WE USE S0 ANND FOR THE NEXT WE USE S1.
+
+
+
+
+###hardware debugging -:
+
+##sometime it will happen that you have written a good code but you are not getting resultt out of it .
+##that is say 10 ns siganl on to a LED as it is very fast it is either total on or total off.
+
+
+##the two popular IP that we use to debug our code onto an hardwARE IS ILA(INTEGRATED LOGIC ANALYSER) and VIO (VIRTUAL INPUT AND OUTPUT )
+
+##IT IS A IP CORE LOGIC ANALYSER THAT CAN BE USED TO MONITOR THE INTERNAL SIGANLS OF A DESIGN ALSO THE CLOCK THAT WE ARE USING TO MONITOR A DESIGN SAME CLOCK IS USED TO FEED THE
+ILA AND ALL DESIGN CLOCK CONSTRAINTS THAT ARE APPLIED TO YOUR DESIGN  ARE ALSO APPLIED TO ILA.
+##SIGANLS IN FPGA DESIGN ARE CONNECTED TO ILA CORE CLOCK AND PROBE INPUT.THESE SIGNALS,ARE ATTACHED TO THE PROBE INPUTS,ARE SAMPLED  AT DESIGN SPEEDS  AND STORED USING ON CHIP BLOCK RAM (BRAM)
+
+##AS WE INCREASE THE DEPTH OF AN ILA CORE YOU WILL BE FINDING WE COONSUME MORE BRAM RESOURCES ##all the samples are stored in the bram as specified by the depth of the ILA ONCE THE 
+DEPTH IS FULL THEN WE GET ALL THE SAMPLE ON A VIVADO SAMPLE ANALYSER..
+
+0 TO 1023 IS THE MAXIMUM NUMBER OF SIGANL THAT CAN BE ANALYSED BY AN ILA AND THE DEPTH IS IN THE RANGE 0 TO 4096.
+
+
+####ILA :-IT BASICALLY COLLECT THE SAMPPLE DEPENDING ON THE DEPTH THAT USER SPECIFIED AND ONCE ALL THE SAMPLES ARE FILED INTO THE BRAM THEN IT DISPLAYED IT ON AN VIVADO ANALYSER 
+
+
+###VIO CAN BE USED TO BOTH MONITOR AS WELL AS DRIVE INTERNAL FPGA SIGNAL THAT TO IN A REAL TIME .
+
+
+HERE INPUT VALUES ARE READ BACK PERIODICALLY AND DISPLAYRD IN VIVADO LOGIC ANALYSER FEATURE .
+
+##HERE ALSO CLOCK IS SAME 
+##HERE NUMBER OF SIGANL THAT YOU CAN MONITOR WITH THE VIO CAN GO FROM 0 TO 256
+##AND THE WIDTH CAN RANGE FROM 1 TO 256
+
+
+
+###for ILA IIT BECOEM NECESARY THAT YOU PERFORM THE SYNTHESIS FIRST AND THEN PERFORM THE ILA 
+
+####FOR VIO WE DONOT WANT TO SPECIFY HTE PORT WHICH WE WANT TO TRIGGER .
+###AFTER SYNTHESIS IS COMPLETE WE CAN JUST OPEN OUR SYNTHESIS DESIGN .
+
+
+##SOMEITME IT IS NOT POSSIBLE TO ANALYSE THE WHOLE SCENARIO IN THE REAL TIME .
+##SO WHAT WE DO IS STORE OUR SAMPLE AND ANALYSE SAMPLE BY SAMPLE.
+####thus WE SAVE OUR CONSTRAINTS THAT WE PUT ON THE DEVICE .
