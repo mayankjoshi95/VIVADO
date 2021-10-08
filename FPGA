@@ -2195,6 +2195,9 @@ end Behavioral;
 
 
 
+
+##
+
 ###IP it is fundamental block when you specify your design in a graphical way   
 1.HOW TO CREATE AN IP
 HOW YOU REFRESH YOUR REPOSITORY
@@ -2295,3 +2298,18 @@ HERE INPUT VALUES ARE READ BACK PERIODICALLY AND DISPLAYRD IN VIVADO LOGIC ANALY
 ####thus WE SAVE OUR CONSTRAINTS THAT WE PUT ON THE DEVICE .
 
 s
+
+
+
+##Memories in FPGA 
+##when we need to frequently access the data and store information 
+##in a case where we wnat to store a huge amoutn of data then we have an option to work with DDR it is preseent in 7 series  
+
+##Goto 7 series product table and product selection guide .
+
+##Distributed memeories vs block memeories 
+
+
+
+
+
