@@ -2309,7 +2309,10 @@ s
 
 ##Distributed memeories vs block memeories 
 
+##Slice L is used to implement the logical fucnition whereas the slice m are used to implement the memeories 
 
-
+##whenevver we reuire the depth of 128 or less we go with the distributed memeory .
+##case wherre we want to know what is the size of the specififc memeory that i want to get out of the specififc architecture or  a maximum size of BRAM thatt i can get ourt of the 
+architecture so we can look at the specific FPGA data sheet .
 
 
